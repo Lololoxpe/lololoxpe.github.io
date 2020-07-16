@@ -1,0 +1,43 @@
+/*
+Name:  Jaiquon Smith
+*/
+
+@charset "utf-8";
+* {margin: 0em; padding: 0em;}
+header,nav,section,article,footer {display:block;}
+html,body {height:100%;}
+body {background-color:black; color:orange; text-align:center;}
+#sub-body {text-align:left; width:100%; margin:auto; font-family: sans-serif;}
+
+header {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+h3 {
+    font-size: 1.2em;
+    padding-left: 25%;
+}
+h4 {
+    font-size: 1.2em;
+    padding-left: 50%;
+}
+h5 {
+    font-size: 1.2em;
+    padding-left: 75%;
+}
+
+p {
+    text-align: center;
+}
+
+a:link, a:hover, a:active, a:visited {
+    color: white;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2em;
+}

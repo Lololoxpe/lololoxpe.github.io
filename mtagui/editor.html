@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/editor.css" />
+  </head>
+  <body>
+    <main id="canvas"></main>
+    <footer>
+      <label id="status"></label>
+      <label id="loader"></label>
+      <script>
+        (function (d, s, jss) {
+            var b = d.getElementsByTagName('body')[0];
+            for (var i = 0; i < jss.length; i++) {
+                var js = d.createElement(s);
+                js.src = s + 's/' + jss[i] + '.js';
+                js.async = false;
+                b.appendChild(js);
+            }
+        })(document, 'script', ['gui', 'menu', 'editor']);
+      </script>
+    </footer>
+  </body>
+</html>
