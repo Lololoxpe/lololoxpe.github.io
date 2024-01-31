@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraSPARC</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .header img {
+            width: 100px;
+            height: 100px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h2 {
+            font-size: 24px;
+            color: #009900;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .content table th, .content table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .content table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .content table, .content table th, .content table td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="ultrasparc.png" alt="UltraSPARC logo">
+            <h1>UltraSPARC</h1>
+        </div>
+        <div class="content">
+            <h2>Технические характеристики</h2>
+            <table>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Значение</th>
+                </tr>
+                <tr>
+                    <td>Максимальная частота</td>
+                    <td>200 МГц</td>
+                </tr>
+                <tr>
+                    <td>Количество ядер</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Количество потоков</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Объем кэша первого уровня</td>
+                    <td>16 КБ (инструкции) + 16 КБ (данные)</td>
+                </tr>
+                <tr>
+                    <td>Объем кэша второго уровня</td>
+                    <td>512 КБ - 4 МБ (внешний)</td>
+                </tr>
+                <tr>
+                    <td>Техпроцесс</td>
+                    <td>0.5 мкм CMOS</td>
+                </tr>
+                <tr>
+                    <td>Количество транзисторов</td>
+                    <td>3.8 млн</td>
+                </tr>
+                <tr>
+                    <td>Размер кристалла</td>
+                    <td>45.0 x 37.5 мм</td>
+                </tr>
+                <tr>
+                    <td>Тепловыделение</td>
+                    <td>30 Вт</td>
+                </tr>
+                <tr>
+                    <td>Разъем</td>
+                    <td>SBUS</td>
+                </tr>
+            </table>
+            <p>Источники: [Википедия](https://en.wikipedia.org/wiki/UltraSPARC), [GeeksforGeeks](https://www.geeksforgeeks.org/ultrasparc-architecture/)</p>
+        </div>
+    </div>
+</body>
+</html>
