@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            color: green;
+            padding: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            width: 180px;
+            height: 80px;
+            border: 5px solid green;
+            border-radius: 10px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: green;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: green;
+            color: white;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            font-size: 18px;
+            color: green;
+        }
+
+        @media (max-width: 600px) {
+            .button {
+                width: 120px;
+                height: 80px;
+                font-size: 18px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Название</div>
+        <div class="buttons">
+            <a href="#" class="button">Sun/Oracle</a>
+            <a href="#" class="button">МЦСТ</a>
+            <a href="#" class="button">IBM/Motorola</a>
+            <!-- added the baikal class to this button -->
+            <a href="#" class="button">Baikal Electronics</a>
+        </div>
+        <div class="footer">
+            <span>LXP MEDIA 2024</span>
+            <span>lololoxpe.github.io</span>
+        </div>
+    </div>
+</body>
+</html>
