@@ -141,6 +141,13 @@
             margin-top: 5px;
             color: #fff;
         }
+
+        #logs {
+            max-height: 400px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
     </style>
 </head>
 
@@ -154,6 +161,9 @@
             <option value="4">Train Miner</option>
             <option value="5">Merge Away</option>
             <option value="6">Twerk Race</option>
+            <option value="7">Polysphere</option>
+            <option value="8">Mow and Trim</option>
+            <option value="9">Mud Racing</option>
         </select>
 
         <label for="keyCount">Число ключей:</label>
@@ -170,6 +180,8 @@
         </div>
 
         <div id="codeList" class="code-list"></div>
+
+        <ul id="logs"></ul>
     </div>
 
     <script>
@@ -204,13 +216,26 @@
                 appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
                 promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
             },
+            7: {
+                name: 'Polysphere',
+                appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+                promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+            },
+            8: {
+                name: 'Mow and Trim',
+                appToken: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+                promoId: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+            },
+            9: {
+                name: 'Mud Racing',
+                appToken: '8814a785-97fb-4177-9193-ca4180ff9da8',
+                promoId: '8814a785-97fb-4177-9193-ca4180ff9da8',
+            },
 
         };
 
         function generateClientId() {
-            const timestamp = Date.now();
-            const randomNumbers = Array.from({ length: 19 }, () => Math.floor(Math.random() * 10)).join('');
-            return `${timestamp}-${randomNumbers}`;
+            return crypto.randomUUID()
         }
 
         async function loginClient() {
@@ -233,14 +258,15 @@
                 const result = await response.json();
                 return result.clientToken;
             } catch (error) {
+                document.querySelector('#logs').innerHTML += `<li>Ошибка при входе клиента: ${error.message}</li>`
                 console.error('Ошибка при входе клиента:', error.message);
-                await new Promise(resolve => setTimeout(resolve, 5000));
+                await new Promise(resolve => setTimeout(resolve, 15000));
                 return loginClient(); // Рекурсивный вызов
             }
         }
 
         async function registerEvent(token) {
-            const eventId = generateEventId();
+            const eventId = generateRandomUUID();
             const url = 'https://api.gamepromo.io/promo/register-event';
             const data = {
                 promoId: games[args].promoId,
@@ -260,14 +286,16 @@
                 const result = await response.json();
                 if (!result.hasCode) {
                     console.log('Retry register event');
-                    await new Promise(resolve => setTimeout(resolve, 5000));
+                    document.querySelector('#logs').innerHTML += `<li>Ошибка при регистрации события: ${JSON.stringify(result)}</li>`
+                    await new Promise(resolve => setTimeout(resolve, 22000));
                     return registerEvent(token); // Рекурсивный вызов
                 } else {
                     return true;
                 }
             } catch (error) {
+                document.querySelector('#logs').innerHTML += `<li>Ошибка при регистрации события: ${error.message}</li>`
                 console.error('Ошибка при регистрации события:', error.message);
-                await new Promise(resolve => setTimeout(resolve, 5000));
+                await new Promise(resolve => setTimeout(resolve, 25000));
                 return registerEvent(token); // Рекурсивный вызов в случае ошибки
             }
         }
@@ -294,23 +322,17 @@
                         return result.promoCode;
                     }
                 } catch (error) {
+                    document.querySelector('#logs').innerHTML += `<li>Ошибка при создании кода: ${error.message}</li>`
                     console.error('Ошибка при создании кода:', error.message);
-                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    await new Promise(resolve => setTimeout(resolve, 5000));
                 }
             } while (!response || !response.promoCode); // Повторяем запрос, если ничего не возвращает
         }
 
-        function generateEventId() {
-            const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-            const digits = '0123456789';
-
-            const firstPart = generateRandomString(characters, 8);
-            const secondPart = generateRandomString(digits, 4);
-            const thirdPart = generateRandomString(characters, 4);
-            const fourthPart = generateRandomString(characters, 4);
-            const fifthPart = generateRandomString(characters, 12);
-
-            return `${firstPart}-${secondPart}-${thirdPart}-${fourthPart}-${fifthPart}`;
+        function generateRandomUUID() {
+            return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+                (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+            );
         }
 
         function generateRandomString(characters, length) {
@@ -342,6 +364,7 @@
                 tasks.push((async (index) => {
                     try {
                         const token = await loginClient();
+                        await new Promise(rs => setTimeout(rs, 22000))
                         await registerEvent(token);
                         const codeData = await createCode(token);
                         // Выводим код в список
