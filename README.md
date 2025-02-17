@@ -1,2 +1,2 @@
 Сервисы LXP
-vk.com/sfbrkn
+https://t.me/lxplxplxp
