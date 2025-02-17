@@ -7,7 +7,7 @@
   body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    text-align: center; /* добавлено */
+    text-align: center;
   }
 
   .container {
@@ -15,17 +15,17 @@
     margin: 0 auto;
   }
 
-  header { /* добавлено */
+  header {
     padding: 0px;
   }
 
   h1 {
-    font-size: 40px; /* добавлено */
-    font-weight: 100; /* добавлено */
+    font-size: 40px;
+    font-weight: 100;
   }
 
-  article { /* добавлено */
-    margin: 0px; /* добавлено */
+  article {
+    margin: 0px;
   }
 
   .buttons {
@@ -37,14 +37,30 @@
     border: none;
     border-radius: 5px;
     background: linear-gradient(to bottom, #00b4db, #0083b0);
-    color: white; /* добавлено */
+    color: white;
     font-size: 14px;
     cursor: pointer;
-    margin: 1px; /* изменено */
-    width: 100px; /* изменено */
-    height: 35px; /* изменено */
+    margin: 1px;
+    width: 100px;
+    height: 35px;
     vertical-align: middle;
-    line-height: 35px; /* изменено */
+    line-height: 35px;
+    text-align: center;
+  }
+
+  .button2 {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #252525, #131313);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 1px;
+    width: 150px;
+    height: 35px;
+    vertical-align: middle;
+    line-height: 35px;
     text-align: center;
   }
 
@@ -55,10 +71,24 @@
   .footer {
     text-align: center;
     font-size: 16px;
-    color: #999999; /* изменено */
+    color: #999999;
     margin-bottom: 20px;
   }
-</style>
+
+  h3 {
+    margin-bottom: 3em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5em;
+  }
+
+  .program-block {
+    margin-bottom: 2em;
+    padding: 5px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  </style>
  </head>
  <body>
         <header>
@@ -66,28 +96,24 @@
         <hr>
         </header>
 <article>
-    <div> <!--Диагностика и чистка-->  
+    <div class="program-block"> <!--Диагностика и чистка-->  
         <h4>Диагностика и чистка</h4>
         <p>Полезные программы для диагностики, чистки и оптимизации операционной системы.
         <br><br><a href="https://lololoxpe.github.io/progs/diag.html" class="button">Перейти</a>
-        <hr>
         </p>
     </div>
     
-    <div> <!--На каждый день-->  
+    <div class="program-block"> <!--На каждый день-->  
         <h4>На каждый день</h4>
         <p>Полезные программы на каждый день для установки на чистую операционную систему.
         <br><br><a href="https://lololoxpe.github.io/progs/everyday.html" class="button">Перейти</a>
         </p>
     </div>
-
-
-
 </article>
         <div class="footer">
             <hr>
             <p><b>LXP MEDIA 2025</b></p>
-			<p><b>lololoxpe.github.io</b></p>
+            <p><b>lololoxpe.github.io</b></p>
         </div>
  </body>
 </html>
