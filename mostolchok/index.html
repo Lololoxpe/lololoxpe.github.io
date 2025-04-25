@@ -1,29 +1,86 @@
-<!DOCTYPE HTML>
-<html>
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" name="viewport" content="width=device-width, initial-scale=1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <!-- Обязательный мета-тег для правильного масштабирования на мобильных -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>МосТолчок</title>
+  <style>
+    /* Сбрасываем отступы по умолчанию */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    /* Вертикальный флекс-контейнер на всю высоту экрана */
+    html, body {
+      height: 100%;
+    }
 
-  <title></title>
- </head>
- <body>
-        <header><center>
-        <h3 style="color:#1e1e1e;"><center><font  face="Arial"></font></center>МосТолчок</h3>
-       <!-- <hr size="3px" color="#1e1e1e">-->
-        </header></center>
-<article><center>
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A33751ce654d520f3c97a093e1db5ee355758341e1f23945e93da35594fac284c&amp;source=constructor" width="50%" height="450" frameborder="0"></iframe>
-    </center>
-</article>
-        <footer>
-            <br><hr size="2px" color="#1e1e1e">
-            <p style="color:#1e1e1e;"><center><font  face="Arial"><b>LXP Production 2023</b>
-            <br>Сервис работает на мощностях <a href="https://lololoxpe.github.io">LXP Production</a></font></center></p>
-            <hr size="2px" color="#1e1e1e">
-        </footer>
- </body>
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      color: #1e1e1e;
+    }
+
+    header, footer {
+      text-align: center;
+      background: #fff;
+      padding: 0.5em 1em;
+      flex-shrink: 0; /* не сжимать по высоте */
+      border-bottom: 2px solid #1e1e1e;
+    }
+
+    footer {
+      border-top: 2px solid #1e1e1e;
+      border-bottom: none;
+      font-size: 0.9em;
+    }
+
+    /* Основная область занимает всё оставшееся место */
+    main {
+      flex: 1;
+      /* Чтобы iframe мог занять весь контейнер */
+      display: flex;
+    }
+
+    /* Настройки для iframe-карты */
+    .map-container {
+      flex: 1;
+      position: relative;
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>МосТолчок</h1>
+  </header>
+
+  <main>
+    <div class="map-container">
+      <iframe
+        src="https://yandex.ru/map-widget/v1/?um=constructor%3A33751ce654d520f3c97a093e1db5ee355758341e1f23945e93da35594fac284c&amp;source=constructor"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>LXP Production 2023</strong><br>
+    Сервис работает на мощностях <a href="https://lololoxpe.github.io" target="_blank" rel="noopener">LXP Production</a></p>
+  </footer>
+
+</body>
 </html>
-
-<!--vk.com/lololoxpeinc-->
-<!--vk.com/berkytstudio-->
-<!--lololoxpe.github.io-->
