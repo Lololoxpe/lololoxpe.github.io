@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LXP AppStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lxp-primary': '#0084B1',
+                        'lxp-secondary': '#00B3DA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-header {
+            background: linear-gradient(135deg, #0084B1, #00B3DA);
+        }
+        
+        .app-card-shadow {
+            box-shadow: 0 4px 15px rgba(0, 131, 177, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .app-card-shadow:hover {
+            box-shadow: 0 6px 20px rgba(0, 131, 177, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(135deg, #0084B1, #00B3DA);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #00719e, #0098c0);
+            transform: scale(1.02);
+        }
+        
+        .footer-bg {
+            background-color: #0084B1;
+        }
+        
+        .rating-stars {
+            color: #f59e0b;
+        }
+        
+        .screenshot-slider {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .screenshot-item {
+            scroll-snap-align: start;
+        }
+        
+        .feature-badge {
+            background: rgba(0, 179, 218, 0.1);
+            border: 1px solid rgba(0, 179, 218, 0.3);
+        }
+        
+        .download-btn-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 179, 218, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 179, 218, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 179, 218, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="gradient-header text-white py-4 px-6 fixed top-0 w-full z-50 transition-transform duration-300">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <div class="bg-white rounded-lg p-1 mr-3">
+                    <img src="lxpappstoreicon.png" alt="LXP AppStore Icon" width="32" height="32">
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold">LXP AppStore</h1>
+                    <p class="text-xs opacity-80">От LXP Media</p>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="relative overflow-hidden">
+        <div class="gradient-header py-16 md:py-24">
+            <div class="container mx-auto px-4 md:px-6 text-center text-white relative z-10">
+                <h1 class="text-3xl md:text-5xl font-bold max-w-3xl mx-auto">Только лучшие приложения и модификации для вашего Android</h1>
+                <p class="mt-4 text-lg max-w-2xl mx-auto opacity-90">Проверенные и любимые приложения для вашего смартфона</p>
+                
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="#recommended-apps" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10">
+                        <i class="fas fa-mobile-alt mr-2"></i> Все приложения
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute -bottom-10 left-0 right-0 opacity-20">
+                <div class="flex justify-center">
+                    <svg width="160" height="160" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 1.75C17 1.33579 16.6642 1 16.25 1H7.75C7.33579 1 7 1.33579 7 1.75V19.25C7 19.6642 7.33579 20 7.75 20H16.25C16.6642 20 17 19.6642 17 19.25V18H18C19.1046 18 20 17.1046 20 16V4C20 2.89543 19.1046 2 18 2H17V1.75ZM15.5 2.5V3.5H8.5V2.5H15.5ZM8.5 18.5V4.5H15.5V18.5H8.5ZM18.5 16C18.5 16.2761 18.2761 16.5 18 16.5H17V13.5H18.5V16ZM17 12V8.5H18.5V12H17ZM17 7V3.5H18C18.2761 3.5 18.5 3.72386 18.5 4V7H17Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wave-divider">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60">
+                <path fill="#0084B1" fill-opacity="1" d="M0,0L60,16C120,32,240,64,360,74.7C480,85,600,75,720,64C840,53,960,43,1080,48C1200,53,1320,75,1380,85.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Сетка приложений -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <div class="mb-10" id="recommended-apps">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800">
+                <i class="fas fa-fire text-orange-500 mr-2"></i> 
+                Рекомендованные приложения
+            </h2>
+            <p class="text-gray-600 text-center mt-2">Лучшее для Android</p>
+        </div>
+        
+        <!-- Карточки приложений -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Карточка приложения 1 -->
+            <div class="bg-white rounded-xl app-card-shadow overflow-hidden">
+                <div class="relative">
+                    <img src="img/mostolchok-banner.jpg" alt="App Banner" class="w-full h-40 object-cover">
+                    
+                    <div class="absolute -bottom-8 left-4">
+                        <div class="bg-white rounded-xl p-1 shadow-md">
+                            <img src="img/mostolchok-icon.png" alt="App Icon" class="w-16 h-16 rounded-lg">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-10 pb-4 px-4">
+                    <h3 class="font-bold text-lg mb-1">Mostolchok</h3>
+                    <div class="flex items-center mb-3">
+                    <span class="text-xs text-gray-500">
+                            <i class="fas fa-user"></i> LXP Media
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-4">
+                        Все туалеты Москвы и Подмосковья в одном приложении на интерактивной карте
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        
+                        <a href="#" class="gradient-btn text-white text-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-download mr-1"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Карточка приложения 2 -->
+            <div class="bg-white rounded-xl app-card-shadow overflow-hidden">
+                <div class="relative">
+                    <img src="https://via.placeholder.com/600x300/00B3DA/FFFFFF?text=LXP+Store" alt="App Banner" class="w-full h-40 object-cover">
+                    
+                    <div class="absolute -bottom-8 left-4">
+                        <div class="bg-white rounded-xl p-1 shadow-md">
+                            <img src="https://via.placeholder.com/80/0084B1/FFFFFF?text=App" alt="App Icon" class="w-16 h-16 rounded-lg">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-10 pb-4 px-4">
+                    <h3 class="font-bold text-lg mb-1">Тут будет приложение</h3>
+                    <div class="flex items-center mb-3">
+                    <span class="text-xs text-gray-500">
+                            <i class="fas fa-user"></i> Developer Studio
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-4">
+                        Тут будет описание
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="gradient-btn text-white text-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-download mr-1"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Карточка приложения 3 -->
+            <div class="bg-white rounded-xl app-card-shadow overflow-hidden">
+                <div class="relative">
+                    <img src="https://via.placeholder.com/600x300/0088cc/FFFFFF?text=LXP+Store" alt="App Banner" class="w-full h-40 object-cover">
+                    
+                    <div class="absolute -bottom-8 left-4">
+                        <div class="bg-white rounded-xl p-1 shadow-md">
+                            <img src="https://via.placeholder.com/80/0099ee/FFFFFF?text=App" alt="App Icon" class="w-16 h-16 rounded-lg">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-10 pb-4 px-4">
+                    <h3 class="font-bold text-lg mb-1">Тут будет приложение</h3>
+                    <div class="flex items-center mb-3">
+                    <span class="text-xs text-gray-500">
+                            <i class="fas fa-user"></i> Developer Studio
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-4">
+                        Тут будет описание
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="gradient-btn text-white text-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-download mr-1"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Карточка приложения 4 -->
+            <div class="bg-white rounded-xl app-card-shadow overflow-hidden">
+                <div class="relative">
+                    <img src="https://via.placeholder.com/600x300/00c4ff/FFFFFF?text=LXP+Store" alt="App Banner" class="w-full h-40 object-cover">
+                    
+                    <div class="absolute -bottom-8 left-4">
+                        <div class="bg-white rounded-xl p-1 shadow-md">
+                            <img src="https://via.placeholder.com/80/007aa3/FFFFFF?text=App" alt="App Icon" class="w-16 h-16 rounded-lg">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-10 pb-4 px-4">
+                    <h3 class="font-bold text-lg mb-1">Тут будет приложение</h3>
+                    <div class="flex items-center mb-3">
+                    <span class="text-xs text-gray-500">
+                            <i class="fas fa-user"></i> Developer Studio
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-4">
+                        Тут будет описание
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="gradient-btn text-white text-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-download mr-1"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </main>
+
+    <!-- Почему LXP AppStore? -->
+    <section class="bg-gray-50 py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                Почему LXP AppStore?
+            </h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mt-2">
+                Мы отбираем только лучшие приложения для вашего Android устройства
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex justify-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-check text-lxp-primary text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-3">Только проверенные приложения</h3>
+                    <p class="text-gray-600 text-center">
+                        Каждое приложение тестируется на предмет качества, безопасности и производительности
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex justify-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-ban text-lxp-primary text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-3">Без рекламы и ненужного ПО</h3>
+                    <p class="text-gray-600 text-center">
+                        Мы проверяем каждое приложение на скрытую рекламу и вредоносный код
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex justify-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-crown text-lxp-primary text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-3">Экспертная оценка</h3>
+                    <p class="text-gray-600 text-center">
+                        Все рекомендации основаны на опыте автора сайта, попробовавшего приложения лично
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 gap-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4 flex items-center">
+                        <div class="bg-white rounded-lg p-1 mr-3">
+                            <img src="lxpappstoreicon.png" alt="LXP AppStore Icon" width="24" height="24">
+                        </div>
+                        LXP AppStore
+                    </h3>
+                    <p class="text-blue-100">
+                        lololoxpe.github.io
+                    </p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://t.me/lxplxplxp" class="text-blue-100 hover:text-white">
+                            <i class="fab fa-telegram fa-lg"></i>
+                        </a>
+                        <a href="https://youtube.com/@lololoxpe" class="text-blue-100 hover:text-white">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="border-t border-blue-800 mt-8 pt-6 text-center text-blue-100 text-sm">
+                <p>
+                    © 2025 LXP Media | LXP AppStore
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Мобильная кнопка -->
+    <div class="fixed bottom-4 right-4 md:hidden">
+        <a href="#" class="gradient-btn text-white p-4 rounded-full shadow-lg">
+            <i class="fas fa-download fa-lg"></i>
+        </a>
+    </div>
+
+    <script>
+        // Эффект при скролле для шапки
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll <= 0) {
+                header.style.transform = 'translateY(0)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 50) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else if (currentScroll < lastScroll) {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
