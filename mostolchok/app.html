@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mostolchok</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключение Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Mostolchok</h1>
+            <p>Туалеты Москвы и Подмосковья</p>
+        </header>
+        
+        <main>
+            <div id="map"></div>
+        </main>
+        
+        <div id="toilet-info" class="toilet-info hidden">
+            <button id="close-info" class="close-button">×</button>
+            <h2 id="toilet-title">Название туалета</h2>
+            <p><strong>Адрес:</strong> <span id="toilet-address"></span></p>
+            <p><strong>Время работы:</strong> <span id="toilet-hours"></span></p>
+            <p><strong>Цена:</strong> <span id="toilet-price"></span></p>
+        </div>
+    </div>
+    
+    <!-- Подключение Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostolchok - Карта туалетов Москвы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .map-container {
+            height: 500px;
+            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=55.7558,37.6176&zoom=11&size=800x500&maptype=roadmap&markers=color:red%7C55.7558,37.6176&key=YOUR_API_KEY');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        
+        .toilet-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+        
+        .toilet-marker:hover::after {
+            content: attr(data-info);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 200px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+        
+        .download-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .screenshot {
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .screenshot:hover {
+            transform: scale(1.03);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: white;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #4B5563;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            font-size: 1.125rem;
+            color: #4B5563;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu-links a:hover {
+            color: #3B82F6;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-toilet text-blue-500 text-3xl mr-3"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Mostolchok</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-blue-500 transition">Возможности</a>
+                <a href="#screenshots" class="text-gray-600 hover:text-blue-500 transition">Скриншоты</a>
+                <a href="#download" class="text-gray-600 hover:text-blue-500 transition">Скачать</a>
+                <a href="#faq" class="text-gray-600 hover:text-blue-500 transition">FAQ</a>
+            </nav>
+            <button class="md:hidden text-gray-600 mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <!-- Мобильное меню -->
+            <div class="mobile-menu">
+                <div class="mobile-menu-content">
+                    <button class="mobile-menu-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="mobile-menu-links">
+                        <a href="#features" class="hover:text-blue-500 transition">Возможности</a>
+                        <a href="#screenshots" class="hover:text-blue-500 transition">Скриншоты</a>
+                        <a href="#download" class="hover:text-blue-500 transition">Скачать</a>
+                        <a href="#faq" class="hover:text-blue-500 transition">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Все туалеты Москвы в одном приложении</h2>
+                <p class="text-xl mb-8">Находите ближайшие туалеты в любой точке города с полной информацией о доступности, чистоте и удобствах</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#download" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg text-center download-btn">
+                        <i class="fas fa-download mr-2"></i> Скачать приложение
+                    </a>
+                    <a href="app.html" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center download-btn">
+                        <i class="fas fa-map-marked-alt mr-2"></i> Попробовать онлайн
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="app-screenshot2.png" alt="Mostolchok на телефоне" class="h-96 object-contain">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800">Почему Mostolchok?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon bg-blue-100 text-blue-500">
+                        <i class="fas fa-map text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Интерактивная карта</h3>
+                    <p class="text-gray-600">Удобная карта с отметками всех туалетов в Москве и Подмосковье. Быстрый поиск ближайшего туалета в любой точке города</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon bg-green-100 text-green-500">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Время работы</h3>
+                    <p class="text-gray-600">Актуальная информация о графике работы каждого туалета. Знайте заранее, какие туалеты доступны в данный момент</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon bg-purple-100 text-purple-500">
+                        <i class="fas fa-ruble-sign text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Стоимость посещения</h3>
+                    <p class="text-gray-600">Информация о стоимости использования каждого туалета. Четкое разделение на платные и бесплатные точки</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Как выглядит приложение</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Удобный интерфейс, который поможет быстро найти нужный туалет в любой ситуации</p>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+                    <img src="app-screenshot.png" alt="Интерфейс приложения Mostolchok" class="w-full h-auto md:h-[600px] object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out">
+                </div>
+                <p class="text-sm text-gray-500 text-center mt-4">Интерактивная карта с отмеченными туалетами и подробной информацией</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800">Что говорят пользователи</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Иван Петров</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Спасение для таксистов! Теперь всегда знаю, где можно остановиться по пути. Особенно ценю отметки о времени работы."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Мария Семенова</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Очень удобное приложение для жителей и гостей города. Информация всегда актуальная, можно быстро найти ближайший туалет и узнать, платный он или бесплатный."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Алексей К.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Часто бываю в командировках в Москве. Приложение реально экономит время и нервы. Особенно полезны отметки о платных и бесплатных туалетах."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Скачайте Mostolchok прямо сейчас</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Доступно для Android и в браузере</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-16">
+                <a href="#" class="bg-white text-blue-600 font-bold py-4 px-8 rounded-lg flex items-center justify-center download-btn">
+                    <img src="lxpappstoreicon.png" alt="LXP AppStore Icon" class="w-6 h-6 mr-3">
+                    <div class="text-left">
+                        <div class="text-xs">Доступно в</div>
+                        <div class="text-lg">LXP AppStore</div>
+                    </div>
+                </a>
+                
+                <a href="app.html" class="bg-gray-900 text-white font-bold py-4 px-8 rounded-lg flex items-center justify-center download-btn">
+                    <i class="fas fa-globe text-2xl mr-3"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Открыть</div>
+                        <div class="text-lg">Веб-версия</div>
+                    </div>
+                </a>
+            </div>
+            
+            <!--<div class="max-w-md mx-auto bg-blue-700 bg-opacity-50 rounded-lg p-6">
+                <h3 class="font-bold mb-3">Подписаться на обновления</h3>
+                <p class="text-sm mb-4">Узнавайте первыми о новых функциях и точках</p>
+                <div class="flex">
+                    <input type="email" placeholder="Ваш email" class="flex-grow px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+                    <button class="bg-blue-800 px-4 py-2 rounded-r-lg font-bold">OK</button>
+                </div>
+            </div>-->
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Частые вопросы</h2>
+            
+            <div class="space-y-4">
+                <div class="border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left font-bold text-gray-800">
+                        <span>Как часто обновляются данные?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <p class="mt-2 text-gray-600 hidden">Данные обновляются вручную модератором, у пользователей есть возможность указать на несоответствие информации или отправить запрос на добавление новой точки на карту.</p>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left font-bold text-gray-800">
+                        <span>Есть ли платные функции?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <p class="mt-2 text-gray-600 hidden">Приложение полностью бесплатное. Мы не берем деньги за базовую функциональность. В будущем возможен премиум-доступ к дополнительным фильтрам.</p>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left font-bold text-gray-800">
+                        <span>Как добавить новый туалет?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <p class="mt-2 text-gray-600 hidden">Напишите нам в официальный <a href="https://t.me/mostolchok" class="text-blue-600 hover:underline">телеграм</a>, сфотографируйте туалет, его время работы и отправьте в чат с поддержкой. Также укажите адрес и координаты туалета, модератор проверит информацию и добавит туалет на карту.</p>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left font-bold text-gray-800">
+                        <span>Работает ли оффлайн?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <p class="mt-2 text-gray-600 hidden">Нет, приложение работает только с подключением к интернету.</p>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left font-bold text-gray-800">
+                        <span>Как сообщить об ошибке?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <p class="mt-2 text-gray-600 hidden">Напишите нам в официальный <a href="https://t.me/mostolchok" class="text-blue-600 hover:underline">телеграм</a>, сделайте и отправьте в чат с поддержкой скриншот ошибки, модератор проверит и разберется с проблемой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-toilet text-blue-500 text-2xl mr-3"></i>
+                    <h3 class="text-xl font-bold">Mostolchok</h3>
+                </div>
+                <p class="text-gray-400 mb-8">Ваш надежный гид по туалетам Москвы и Подмосковья</p>
+                
+                <!--<div>
+                    <h4 class="font-bold mb-4">Приложение</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">О нас</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Возможности</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Скачать</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Поддержка</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Сообщить об ошибке</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Добавить точку</a></li>
+                    </ul>
+                </div>-->
+                
+                <div class="text-center">
+                   <!-- <h4 class="font-bold mb-4">Социальные сети</h4>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>-->
+                    <p class="mt-4 text-gray-400">lololoxpe.github.io</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-400">
+                <p>© 2025 Mostolchok by LXP Media</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('#faq button').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            });
+        });
+        
+        
+    </script>
+</body>
+</html>
