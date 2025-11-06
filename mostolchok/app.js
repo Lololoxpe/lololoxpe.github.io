@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toiletPrice.textContent = toilet.price;
             
             // Показываем информационную панель
+            toiletInfo.classList.add('active');
             toiletInfo.classList.remove('hidden');
         });
         
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Обработчик клика по кнопке закрытия информационной панели
     closeInfoButton.addEventListener('click', function() {
+        toiletInfo.classList.remove('active');
         toiletInfo.classList.add('hidden');
     });
     
