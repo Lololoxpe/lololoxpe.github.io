@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19
     }).addTo(map);
-    
+    map.attributionControl.setPrefix('Leaflet');
     // Получаем элементы DOM для информационной панели
     const toiletInfo = document.getElementById('toilet-info');
     const toiletTitle = document.getElementById('toilet-title');
