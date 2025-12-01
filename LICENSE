@@ -1,21 +1,56 @@
-MIT License1
+LXP Open License v1.0
+Author: Lololoxpe
+Date: 2025
 
-Copyright (c) 2020-2025 Lololoxpe
+1. Code Openness
+   The source code created by the author is distributed in an open form. 
+   Any user has the right to study, use, modify, and distribute this code.
+2. No Closure
+   It is prohibited to use this code or its derivative works in closed, 
+   proprietary, or inaccessible projects. 
+   All modifications and additions must remain open and publicly available.
+3. Third-Party Materials
+   The project may include third-party libraries and materials distributed under their original licenses (MIT, GPL, Apache, etc.).
+   These licenses remain valid and must be respected independently of this license.
+4. Attribution
+   When distributing or modifying, this license must be preserved and the author's name must be indicated.
+5. Free Distribution
+   Free copying, distribution, and modification are permitted provided that 
+   this license is preserved and the conditions of third-party licenses are respected.
+6. No Warranty
+   The software is provided "as is," without any warranties. 
+   The author is not responsible for any consequences of its use.
+7. Limitation of Liability
+   The author shall not be liable for any damages, direct or indirect, 
+   arising from the use, modification, or distribution of this code.
+8. Acceptance of Terms
+   By using this code, you agree to comply with the terms of this license and the licenses of third-party components.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+LXP Open License v1.0
+Автор: Lololoxpe
+Дата: 2025
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. Открытость кода
+   Исходный код, созданный автором, распространяется в открытом виде. 
+   Любой пользователь имеет право изучать, использовать, изменять и распространять данный код.
+2. Запрет закрытия
+   Запрещается использовать данный код или его производные работы в закрытых, 
+   проприетарных или недоступных для общественности проектах. 
+   Все изменения и дополнения должны оставаться открытыми и доступными.
+3. Сторонние материалы
+   В проекте могут использоваться сторонние библиотеки и материалы, распространяемые на условиях их оригинальных лицензий (MIT, GPL, Apache и др.).
+   Эти лицензии сохраняют свою силу и должны соблюдаться независимо от настоящей лицензии.
+4. Указание авторства
+   При распространении или модификации необходимо сохранять данную лицензию и указывать имя автора.
+5. Свободное распространение
+   Разрешается свободное копирование, распространение и модификация при условии 
+   сохранения настоящей лицензии и соблюдения условий сторонних лицензий.
+6. Отсутствие гарантий
+   Программное обеспечение предоставляется "как есть", без каких-либо гарантий. 
+   Автор не несет ответственности за возможные последствия использования.
+7. Ограничение ответственности
+   Автор не несет ответственности за любые убытки, прямые или косвенные, 
+   возникшие в результате использования, модификации или распространения данного кода.
+8. Принятие условий
+   Используя данный код, вы соглашаетесь соблюдать условия настоящей лицензии и лицензий сторонних компонентов.
