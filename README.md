@@ -3,7 +3,9 @@
 Привет! Это Lololoxpe, я делаю много всяких интересных вещей в интернете, а это мой сайт. Добро пожаловать
 
 https://lololoxpe.github.io
+
 https://t.me/lxplxplxp
+
 https://youtube.com/@lololoxpe
 
 ---
