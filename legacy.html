@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  header {
+    padding: 20px 0;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .logo img {
+    height: 100px;
+    width: auto;
+    vertical-align: middle;
+    border: 0;
+  }
+
+  .logo span {
+    font-size: 70px;
+    font-weight: 100;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 70px;
+    margin-left: 10px;
+  }
+
+  /* Fallback for old browsers */
+  .buttons {
+    text-align: center;
+    font-size: 0; /* Remove whitespace between inline-block elements */
+  }
+
+  .button {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: #0083b0; /* Fallback */
+    background: linear-gradient(to bottom, #00b4db, #0083b0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00b4db', endColorstr='#0083b0', GradientType=0); /* IE6-9 */
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+    width: 250px;
+    height: 60px;
+    vertical-align: middle;
+    line-height: 60px;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+
+  .button:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* IE8 and earlier */
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 16px;
+    color: #999999;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .marquee {
+    background-color: #0083b0;
+    color: white;
+    padding: 5px 0;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .logo img {
+      height: 50px;
+    }
+    .logo span {
+      font-size: 50px;
+      line-height: 50px;
+    }
+    
+    .button {
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>
+<title>Lololoxpe</title>
+</head>
+<body>
+  <marquee class="marquee">Добро пожаловать на упрощенную версию сайта для старых браузеров</marquee>
+  <div class="container">
+    <header> 
+      <div class="logo">
+        <img src="lololoxpe.png" alt="Lololoxpe">
+      </div>
+    </header>
+    <div class="buttons">
+      <a href="https://lololoxpe.github.io/progs/" class="button">Полезные программы</a>
+      <a href="https://lololoxpe.github.io/mtagui/" class="button">Редактор GUI для MTA SA</a>
+      <a href="https://youtube.com/@lololoxpe" class="button">YouTube канал</a>
+      <a href="https://t.me/lxplxplxp" class="button">Телеграм канал</a>
+      <a href="https://lololoxpe.github.io/mostolchok/mostolchok" class="button">Mostolchok</a>
+      <a href="#" class="button">Скоро тут будет проект</a>
+    </div>
+    <div class="footer">
+      <p>© 2026 LXP Media | Lololoxpe</p>
+      <p>lololoxpe.github.io</p>
+    </div>
+  </div>
+</body>
+</html>

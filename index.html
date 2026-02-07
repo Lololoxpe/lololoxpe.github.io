@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lololoxpe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #0084B1, #00B3DA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .marquee {
+            background-color: #0083b0;
+            color: white;
+            padding: 5px 0;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans transition-colors duration-300">
+    <marquee class="marquee">Новый сайт запущен!</marquee>
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0084B1] to-[#00B3DA] flex items-center justify-center">
+    <span class="text-white font-bold">L</span>
+</div>
+                <h1 class="text-2xl font-bold gradient-text">Lololoxpe</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Главная</a>
+                <a href="#projects" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Проекты</a>
+                <a href="#about" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Обо мне</a>
+            </nav>
+            <button id="mobileMenuButton" aria-label="Открыть меню" class="md:hidden text-gray-800">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white py-4 px-4 shadow-md transition-all duration-300">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Главная</a>
+                <a href="#projects" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Проекты</a>
+                <a href="#about" class="text-gray-800 hover:text-[#0084B1] font-medium transition">Обо мне</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-gradient-to-r from-[#0084B1]/10 to-[#00B3DA]/10 transition-colors duration-300">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+                    Привет, я <span class="gradient-text">Lololoxpe</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8">
+                    Я создаю качественные обзоры разной техники и делюсь своим опытом использования девайсов.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="bg-gradient-to-r from-[#0084B1] to-[#00B3DA] text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition">
+                        Мои проекты
+                    </a>
+                    <a href="https://lololoxpe.github.io/legacy.html" class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                        Старый сайт
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-r from-[#0084B1] to-[#00B3DA] flex items-center justify-center">
+                        <div class="w-60 h-60 md:w-72 md:h-72 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                            <img src="./avatarka.jpg" alt="Lololoxpe" class="w-full h-full object-cover object-center">
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                            <span class="text-sm font-medium">Снимаю обзоры</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Мои проекты</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Проекты, которыми я занимаюсь.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Видеоблог -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
+                        <i class="fab fa-youtube text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Техноблог</h3>
+                        <p class="text-gray-600 mb-4">Основной канал на YouTube, на котором я снимаю быстрые, но информативные обзоры и исторические очерки.</p>
+                        <a href="https://youtube.com/@lololoxpe" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+                
+                <!-- Телеграм канал -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-cyan-500 to-green-500 flex items-center justify-center">
+                        <i class="fab fa-telegram-plane text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">В гостях у Lololoxpe</h3>
+                        <p class="text-gray-600 mb-4">Telegram канал, в котором я пишу про свою жизнь и публикую новости по YouTube каналу.</p>
+                        <a href="https://t.me/lxplxplxp" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+                
+                <!-- progs -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Сборник программ на все случаи жизни</h3>
+                        <p class="text-gray-600 mb-4">Сайт, на котором я собрал приложения под Windows, которые я могу советовать и которые могут вам пригодиться.</p>
+                        <a href="https://lololoxpe.github.io/progs" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+                
+                <!-- Mostolchok -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
+                        <i class="fas fa-map-marked-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Mostolchok</h3>
+                        <p class="text-gray-600 mb-4">Туалеты Москвы и Подмосковья на интерактивной карте с адресами и временем работы.</p>
+                        <a href="https://lololoxpe.github.io/mostolchok/index.html" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-teal-500 to-sky-500 flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Тут будет проект</h3>
+                        <p class="text-gray-600 mb-4">Тут будет описание</p>
+                        <a href="#" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-sky-500 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Тут будет проект</h3>
+                        <p class="text-gray-600 mb-4">Тут будет описание</p>
+                        <a href="#" class="text-[#0084B1] font-medium hover:underline">Перейти →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                    Круто, да?
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Обо мне</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Немного информации обо мне и чем я занимаюсь.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-2xl overflow-hidden shadow-lg">
+                            <img src="avatarka.jpg" alt="Lololoxpe" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -left-5 bg-white p-4 rounded-lg shadow-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-award text-[#00B3DA] mr-2"></i>
+                                <span class="text-sm font-medium">С 2014 года на YouTube</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Кто я?</h3>
+                    <p class="text-gray-600 mb-6">
+                        Я видеоблогер с опытом записи различных форматов. Начинал с летсплеев по майнкрафту, но со временем понял что так дела не делаются и спустя почти 10 лет записи различных блогов перешел на формат техноблога с качественными видеообзорами на смартфоны, наушники и другую технику. Люблю создавать видеообзоры, которые помогают определиться с выбором устройства и приносят пользу людям.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#0084B1]/10 flex items-center justify-center mr-4">
+                                <i class="fas fa-code text-[#0084B1] text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">Разработка</h4>
+                            </div>
+                            <p class="text-gray-600">
+                                В свободное от видеоблога время я занимаюсь разработкой различных интересных и полезных приложений и сервисов. Большинство из них не доходят до релиза и остаются в формате файлов и папок у меня на компьютере.<br>Ведущая моя разработка — сайт, на котором я собрал приложения под Windows, которые я могу советовать и которые могут вам пригодиться.<br>Также не могу не отметить относительно свежий проект. Mostolchok - Туалеты Москвы и Подмосковья на интерактивной карте с адресами и временем работы.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                    <i class="fas fa-paint-brush text-blue-500 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">Дизайн</h4>
+                            </div>
+                            <p class="text-gray-600">
+                                Также помимо разработки я увлекаюсь дизайном — сам делаю превью-картинки для своих видео, разрабатываю логотипы, дизайн и фирменный стиль. Увлекаюсь дизайном я примерно столько же, сколько и видеоблогом.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://youtube.com/@lololoxpe" class="inline-block bg-gradient-to-r from-[#0084B1] to-[#00B3DA] text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition">
+                        Перейти на основной канал
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0084B1] to-[#00B3DA] flex items-center justify-center">
+                            <span class="text-white font-bold">L</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">Lololoxpe</h2>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">
+                        Я создаю качественные обзоры разной техники и делюсь своим опытом использования девайсов. 
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">Навигация</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Главная</a></li>
+                            <li><a href="#projects" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">Обо мне</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">Проекты</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://youtube.com/@lololoxpe" class="text-gray-400 hover:text-white transition">Техноблог</a></li>
+                            <li><a href="https://t.me/lxplxplxp" class="text-gray-400 hover:text-white transition">В гостях у Lololoxpe</a></li>
+                            <li><a href="https://lololoxpe.github.io/progs" class="text-gray-400 hover:text-white transition">Сборник приложений</a></li>
+                            <li><a href="https://lololoxpe.github.io/mostolchok" class="text-gray-400 hover:text-white transition">Mostolchok</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    © 2026 LXP Media | Lololoxpe
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        
+        // Add animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.classList.add('opacity-0');
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
